@@ -15,5 +15,6 @@ function draw() {
   fill(y1);
   textFont(myFont);
   textSize(30);
-  text('a trick of the light', mouseX, windowHeight);
+  textAlign(CENTER, BASELINE);
+  text('a trick of the light', 250, windowHeight/2);
 }
