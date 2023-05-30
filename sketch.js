@@ -1,37 +1,25 @@
-// video source: https://vimeo.com/90312869
-// let img;
-let vid;
-let theta = 0;
+let x;
+let offset = 10;
 
 function setup() {
-	createCanvas(1080, 1920, WEBGL);
-
-	// img = loadImage('assets/cat.jpg');
-	vid = createVideo(['assets/chaos.mp4']);
-	vid.elt.muted = false;
-	vid.loop();
-	vid.hide();
+	createCanvas(windowHeight, windowWidth);
+	x = width / 2;
 }
 
 function draw() {
-	background(0);
-	translate(-0, -0, -0);
-	push();
-	rotateZ(theta * mouseX * 0.001);
-	rotateX(theta * mouseX * 0.001);
-	rotateY(theta * mouseX * 0.001);
-	//pass image as texture
-	// texture(vid);
-	// sphere(250);
-	// pop();
-	translate(-0, -0, -0);
-	push();
-	rotateZ(theta * 0.1);
-	rotateX(theta * 0.1);
-	rotateY(theta * 0.1);
-	normalMaterial();
-	texture(vid);
-	box(300, 300, 300);
-	pop();
-	theta += 0.02;
+	background(204);
+	if (mouseX > x) {
+		x += 0.5;
+		offset = -10;
+	}
+	if (mouseX < x) {
+		x -= 0.5;
+		offset = 10;
+	}
+
+	// Draw arrow left or right depending on "offset" value
+	line(x, 0, x, height);
+	line(mouseX, mouseY, mouseX + offset, mouseY - 10);
+	line(mouseX, mouseY, mouseX + offset, mouseY + 10);
+	line(mouseX, mouseY, mouseX + offset * 3, mouseY);
 }
